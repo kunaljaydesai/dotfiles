@@ -1,0 +1,18 @@
+[submodule "nvim/pack/bundle/start/completion-nvim"]
+	path = nvim/pack/bundle/start/completion-nvim
+	url = https://github.com/nvim-lua/completion-nvim
+[submodule "nvim/pack/bundle/start/fzf.vim"]
+	path = nvim/pack/bundle/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "nvim/pack/bundle/start/nerdtree"]
+	path = nvim/pack/bundle/start/nerdtree
+	url = https://github.com/preservim/nerdtree
+[submodule "nvim/pack/bundle/start/nvim-lspconfig"]
+	path = nvim/pack/bundle/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "nvim/pack/bundle/start/vim-polyglot"]
+	path = nvim/pack/bundle/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule "nvim/pack/bundle/start/vimpeccable"]
+	path = nvim/pack/bundle/start/vimpeccable
+	url = https://github.com/svermeulen/vimpeccable
