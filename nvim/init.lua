@@ -60,6 +60,8 @@ vim.g.solarized_contrast = "high"
 -- https://github.com/christoomey/vim-tmux-navigator
 vimp.nnoremap("<C-h>", "<C-w>h")
 vimp.nnoremap("<C-l>", "<C-w>l")
+vimp.nnoremap("<C-j>", "<C-w>j")
+vimp.nnoremap("<C-k>", "<C-w>k")
 
 -- Enable tab switch keybinding
 -- Leader mapping in normal mode (leader gets ignored in insert mode)
@@ -70,3 +72,6 @@ vimp.cnoremap("jk", "<ESC>")
 vimp.vnoremap("jk", "<ESC>")
 vimp.tnoremap("jk", "<C-\\><C-n>")
 
+vimp.nnoremap("<leader>h", ":tabprev<CR>")
+vimp.nnoremap("<leader>l", ":tabnext<CR>")
+vimp.nnoremap("<leader>t", ":tabnew<CR>")
