@@ -75,3 +75,6 @@ vimp.tnoremap("jk", "<C-\\><C-n>")
 vimp.nnoremap("<leader>h", ":tabprev<CR>")
 vimp.nnoremap("<leader>l", ":tabnext<CR>")
 vimp.nnoremap("<leader>t", ":tabnew<CR>")
+
+-- Override *.mm files to be objcpp
+vim.api.nvim_exec("autocmd BufNewFile,BufRead *.mm :set filetype=objcpp", false) 
