@@ -16,3 +16,6 @@
 [submodule "nvim/pack/bundle/start/vimpeccable"]
 	path = nvim/pack/bundle/start/vimpeccable
 	url = https://github.com/svermeulen/vimpeccable
+[submodule "nvim/pack/bundle/start/neoformat"]
+	path = nvim/pack/bundle/start/neoformat
+	url = https://github.com/sbdchd/neoformat.git

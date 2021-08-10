@@ -76,5 +76,16 @@ vimp.nnoremap("<leader>h", ":tabprev<CR>")
 vimp.nnoremap("<leader>l", ":tabnext<CR>")
 vimp.nnoremap("<leader>t", ":tabnew<CR>")
 
+-- Code formatter
+vim.g.neoformat_cpp_clangformat = {
+	exe = 'clang-format',
+	args = {'--style="{BasedOnStyle: Google}"'}
+}
+vim.g.neoformat_enabled_cpp = {'clangformat'}
+vim.g.neoformat_enabled_objcpp = {'clangformat'}
+vim.api.nvim_exec("autocmd BufWritePre *.h :Neoformat", false)
+vim.api.nvim_exec("autocmd BufWritePre *.cpp :Neoformat", false)
+vim.api.nvim_exec("autocmd BufWritePre *.mm :Neoformat", false)
+
 -- Override *.mm files to be objcpp
 vim.api.nvim_exec("autocmd BufNewFile,BufRead *.mm :set filetype=objcpp", false) 
