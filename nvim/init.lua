@@ -41,11 +41,13 @@ vimp.nnoremap("<C-f>", ":Rg<CR>")
 -- Language completion
 local lspconfig = require("lspconfig")
 lspconfig.clangd.setup{}
+lspconfig.tsserver.setup{}
 vimp.nnoremap("gd", vim.lsp.buf.definition)
 vimp.nnoremap({"override"}, "[e", vim.lsp.diagnostic.goto_prev)
 vimp.nnoremap({"override"}, "]e", vim.lsp.diagnostic.goto_next)
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.api.nvim_exec("autocmd BufEnter * lua require'completion'.on_attach()", false)
+
 
 -- Enable side directory structure
 vimp.nnoremap("<leader>nn", ":NERDTreeToggle<CR>")
@@ -83,9 +85,17 @@ vim.g.neoformat_cpp_clangformat = {
 }
 vim.g.neoformat_enabled_cpp = {'clangformat'}
 vim.g.neoformat_enabled_objcpp = {'clangformat'}
+
+vim.g.neoformat_typescript_prettier = {
+	exe = 'prettier',
+	args = {'--config', '~/code/cloudbox/.prettierrc', '--write', '--stdin-filepath', '%filepath', '--parser', 'typescript'},
+	stdin = 1
+}
+vim.g.neoformat_enabled_typescript = {'prettier'}
 vim.api.nvim_exec("autocmd BufWritePre *.h :Neoformat", false)
 vim.api.nvim_exec("autocmd BufWritePre *.cpp :Neoformat", false)
 vim.api.nvim_exec("autocmd BufWritePre *.mm :Neoformat", false)
+vim.api.nvim_exec("autocmd BufWritePre *.ts :Neoformat", false)
 
 -- Override *.mm files to be objcpp
 vim.api.nvim_exec("autocmd BufNewFile,BufRead *.mm :set filetype=objcpp", false) 
