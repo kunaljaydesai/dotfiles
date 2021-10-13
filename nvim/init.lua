@@ -6,6 +6,9 @@ vim.cmd("packloadall")
 vim.o.hidden = true
 vim.g.mapleader = " "
 
+-- Enable mouse
+vim.o.mouse = 'a'
+
 -- Enable relative line numbering
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -79,22 +82,26 @@ vimp.nnoremap("<leader>l", ":tabnext<CR>")
 vimp.nnoremap("<leader>t", ":tabnew<CR>")
 
 -- Code formatter
-vim.g.neoformat_cpp_clangformat = {
-	exe = 'clang-format',
-	args = {'--style="{BasedOnStyle: Google}"'}
-}
-vim.g.neoformat_enabled_cpp = {'clangformat'}
-vim.g.neoformat_enabled_objcpp = {'clangformat'}
+-- Don't use Neoformat for clang-format because of the downside mentioned below
+-- vim.g.neoformat_cpp_clangformat = {
+-- 	exe = '/usr/local/opt/llvm/bin/clang-format',
+-- 	args = {'-style=file'},
+-- 	stdin = 1
+-- }
+-- vim.g.neoformat_enabled_cpp = {'clangformat'}
+-- vim.g.neoformat_enabled_objcpp = {'clangformat'}
 
 vim.g.neoformat_typescript_prettier = {
-	exe = 'prettier',
+	exe = './node_modules/.bin/prettier',
 	args = {'--config', '~/code/cloudbox/.prettierrc', '--write', '--stdin-filepath', '%filepath', '--parser', 'typescript'},
 	stdin = 1
 }
 vim.g.neoformat_enabled_typescript = {'prettier'}
-vim.api.nvim_exec("autocmd BufWritePre *.h :Neoformat", false)
-vim.api.nvim_exec("autocmd BufWritePre *.cpp :Neoformat", false)
-vim.api.nvim_exec("autocmd BufWritePre *.mm :Neoformat", false)
+
+-- For clang-format files, the formatting sometimes requires context of other files in the directory. Unfortunately, neoformatter doesn't support this since it only supports formatters that can format purely based on stdin. As a work around, I'm just running the clang-format command and reloading the file whenever it is saved.
+vim.api.nvim_exec("autocmd BufWritePost *.cpp,*.h,*.mm !clang-format -style=file -i <afile> > /dev/null", false)
+vim.api.nvim_exec("autocmd BufWritePost *.cpp,*.h,*.mm edit", false)
+vim.api.nvim_exec("autocmd BufWritePost *.cpp,*.h,*.mm redraw!", false)
 vim.api.nvim_exec("autocmd BufWritePre *.ts :Neoformat", false)
 
 -- Override *.mm files to be objcpp
